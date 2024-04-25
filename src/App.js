@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import QuoteCard from './Components/QuoteCard';
+import { useState, useEffect } from 'react';
+import { baseApi } from './api';
+
 
 function App() {
+  
+  function getQuote(){
+    fetch(baseApi)
+    .then(response => response.json())
+    .then(res => {
+      console.log(res.slip)
+      setQuote(res.slip)
+    })
+    
+  }
+  const [quote, setQuote] = useState('')
+
+useEffect(() => {
+  getQuote()
+}, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        {
+          quote.length === 0 ? 'Estou vazio' :
+        <QuoteCard id={quote.id} quote={quote.advice} click={getQuote}/>
+        }
+      </main>
     </div>
   );
 }

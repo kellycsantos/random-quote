@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+.App{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.blockquote_container{
+  background: var(--dark-grayish);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 10px;
+}  
+
+.blockquote_container h1{
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--neon-green);
+  
 }
 
-.App-link {
-  color: #61dafb;
+.blockquote_container p{
+  color: var(--light-cyan);
+  font-size: var(--quote-size);
+  font-weight: 700;
+  margin-block: 15px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.division_line{
+  background: url('./assets/pattern-divider-mobile.svg') no-repeat;
+  width: 100%;
+  height: 20px;
+  background-size: 100% 20px;
+}
+
+.btn_random{
+  background: var(--neon-green) url('./assets/icon-dice.svg') no-repeat;
+  background-position: center;
+  width: 56px;
+  height: 56px;
+  position: relative;
+  bottom: -60px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: .5s ease-in-out;
+}
+
+.btn_random:hover{
+  box-shadow: 4px 4px 20px var(--neon-green);
+ 
+}
+
+@media screen and (min-width: 768px) {
+  .blockquote_container{
+    width: 600px;
   }
-  to {
-    transform: rotate(360deg);
+  .division_line{
+    background: url('./assets/pattern-divider-desktop.svg') no-repeat;
+    height: 25px;
+    background-size: 100% 25px;
   }
 }
