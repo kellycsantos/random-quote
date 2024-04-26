@@ -1,34 +1,42 @@
 import './App.css';
 import QuoteCard from './Components/QuoteCard';
+import Loading from './Components/Loading';
 import { useState, useEffect } from 'react';
 import { baseApi } from './api';
+import axios from 'axios'
 
 
 function App() {
-  
-  function getQuote(){
-    fetch(baseApi)
-    .then(response => response.json())
-    .then(res => {
-      console.log(res.slip)
-      setQuote(res.slip)
-    })
-    
+
+  function getQuote() {
+    setLoading(true)
+    axios
+      .get(baseApi)
+      .then((response) => {
+        setQuote(response.data.slip)
+        setLoading(false)
+      })
+      .catch()
+      .finally()
   }
   const [quote, setQuote] = useState('')
+  const [loading, setLoading] = useState(true)
 
-useEffect(() => {
-  getQuote()
-}, [])
+  useEffect(() => {
+
+    getQuote()
+  }, [])
 
   return (
     <div className="App">
       <main>
         {
-          quote.length === 0 ? 'Estou vazio' :
-        <QuoteCard id={quote.id} quote={quote.advice} click={getQuote}/>
+          loading ?
+            <Loading /> :
+            <QuoteCard id={quote.id} quote={quote.advice} click={getQuote} />
         }
       </main>
+
     </div>
   );
 }
